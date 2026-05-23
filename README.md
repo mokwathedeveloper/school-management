@@ -300,7 +300,7 @@ stellar contract invoke --id <CONTRACT_ID> --network testnet --source alice \
 
 | Network | Contract ID |
 |---------|-------------|
-| Testnet | *(paste contract ID here after deployment)* |
+| Testnet | `CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY` |
 
 ---
 
