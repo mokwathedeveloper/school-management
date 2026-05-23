@@ -253,7 +253,7 @@ make build
 ### 2. Fund a testnet account
 
 ```bash
-stellar keys generate alice --network testnet --fund
+stellar keys generate mokwa --network testnet --fund
 ```
 
 ### 3. Deploy
@@ -262,35 +262,57 @@ stellar keys generate alice --network testnet --fund
 stellar contract deploy \
   --wasm target/wasm32v1-none/release/school_management.wasm \
   --network testnet \
-  --source alice \
+  --source mokwa \
   -- \
-  --admin $(stellar keys address alice) \
-  --token <TOKEN_CONTRACT_ID>
+  --admin $(stellar keys address mokwa) \
+  --token CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
 ```
 
-### 4. Example invocations
+> `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` is the native XLM
+> Stellar Asset Contract (SAC) on testnet used as the payment token.
+
+### 4. Deployment Details
+
+| Field | Value |
+|-------|-------|
+| Admin wallet | `GDPTMWBY6RCDEOCQ2WHUG2V7WWCXXIP7T56E46DTF2WZ3MCY47AGZICR` |
+| Payment token | Native XLM SAC — `CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC` |
+| Contract ID | `CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY` |
+| Explorer | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY) |
+
+### 5. Example invocations
 
 **Register a student:**
 ```bash
-stellar contract invoke --id <CONTRACT_ID> --network testnet --source alice \
-  -- register_student --student_wallet <WALLET> --name "Alice" --class_name College
+stellar contract invoke \
+  --id CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY \
+  --network testnet --source mokwa \
+  -- register_student \
+  --student_wallet GDPTMWBY6RCDEOCQ2WHUG2V7WWCXXIP7T56E46DTF2WZ3MCY47AGZICR \
+  --name "Alice" --class_name College
 ```
 
 **Update student class:**
 ```bash
-stellar contract invoke --id <CONTRACT_ID> --network testnet --source alice \
+stellar contract invoke \
+  --id CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY \
+  --network testnet --source mokwa \
   -- update_student_class --student_id 1 --new_class HighSchool
 ```
 
 **Get payment history:**
 ```bash
-stellar contract invoke --id <CONTRACT_ID> --network testnet --source alice \
+stellar contract invoke \
+  --id CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY \
+  --network testnet --source mokwa \
   -- get_payment_history --student_id 1
 ```
 
 **Remove student:**
 ```bash
-stellar contract invoke --id <CONTRACT_ID> --network testnet --source alice \
+stellar contract invoke \
+  --id CBOCON3D72JX25XQUP3R2KB7X6BUVGITHOX2GLAWPISKSFIHPMGJ2CCY \
+  --network testnet --source mokwa \
   -- remove_student --student_id 1
 ```
 
